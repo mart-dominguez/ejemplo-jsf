@@ -29,9 +29,7 @@ public class BeanPaginaConversion {
     private Double temperaturaResultado;
     
     public String irx(){
-        historial.doalgo();
-        if(temperaturaIngreso!=null && temperaturaIngreso%2==0) return "pagina2.xhtml";
-        return "pagina1.xhtml";
+        return "pagina3.xhtml";
     }
     
     public void farenheitToCelcius(){

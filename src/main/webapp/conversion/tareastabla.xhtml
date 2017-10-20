@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"                    
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:form id="frmAbmTareas">
+    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+    <p:panelGrid class="ui-noborder" id="panelAbmtareas">  
+        <f:facet name="header">  
+            <p:row>  
+                <p:column style="font-weight: bold;">Tareas</p:column>  
+            </p:row>  
+        </f:facet>
+        <p:row>  
+            <p:column>  
+                <h:outputText value="Id" />         
+                <h:inputText id="tituloTarea" value="#{beanTabla.unatarea.descripcion}" />
+            </p:column>  
+        </p:row>  
+        <p:row>  
+            <p:column>  
+                <h:outputText value="Titulo: " />
+            </p:column>  
+        </p:row>  
+        <p:row>  
+            <p:column>  
+                <h:outputText value="Fecha: " />
+            </p:column>  
+        </p:row>         
+    </p:panelGrid>
+</h:form>
+<h:form id="frmListaTareas">    
+    <p:dataTable id="singleDT" var="task" value="#{beanTabla.tareas}" rowKey="#{task.id}" selectionMode="single" selection="#{beanTabla.unatarea}" 
+                  paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                 >
+        <f:facet name="header">
+            Lista de tareas. Seleccione 1 para editar
+        </f:facet>
+        <p:column headerText="Id">
+            <h:outputText value="#{task.id}" />
+        </p:column>
+        <p:column headerText="Descripcion">
+            <h:outputText value="#{task.descripcion}" />
+        </p:column>
+        <p:column headerText="Fecha">
+            <h:outputText value="#{task.fechaCarga}"  >
+                <f:convertDateTime pattern="dd/MM/yyyy hh:mm"/>
+            </h:outputText>            
+        </p:column>
+        <p:column headerText="Finalizada">
+            <p:selectBooleanButton id="value1" value="#{task.finalizada}" onLabel="Yes" offLabel="No" style="width:60px" />
+        </p:column>
+        <f:facet name="footer">
+            <p:commandButton process="singleDT" update=":frmAbmTareas:panelAbmtareas" icon="ui-icon-search" value="View" />
+        </f:facet>
+    </p:dataTable>
+</h:form>
+</ui:composition>
+
+
