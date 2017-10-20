@@ -15,5 +15,6 @@ import javax.inject.Named;
 @Named("historialBean")
 @RequestScoped
 public class BeanHistorial {
-    
+ 
+    public String doalgo(){return "";}
 }

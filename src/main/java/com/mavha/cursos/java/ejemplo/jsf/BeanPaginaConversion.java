@@ -22,8 +22,17 @@ public class BeanPaginaConversion {
     @Inject 
     private Conversor conversor;
     
+    @Inject
+    BeanHistorial historial;
+    
     private Double temperaturaIngreso;
     private Double temperaturaResultado;
+    
+    public String irx(){
+        historial.doalgo();
+        if(temperaturaIngreso!=null && temperaturaIngreso%2==0) return "pagina2.xhtml";
+        return "pagina1.xhtml";
+    }
     
     public void farenheitToCelcius(){
         this.temperaturaResultado = conversor.farenheitToCelcius(temperaturaIngreso);
